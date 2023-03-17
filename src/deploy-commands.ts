@@ -24,7 +24,6 @@ const rest = new REST({ version: '10' }).setToken(process.env.TOKEN ?? '')
 // Get route to deploy based on environment
 function getRoute(environment: string): RouteLike {
 	if (environment === 'prod') {
-		console.log(process.env.ENVIRONMENT)
 		return Routes.applicationCommands(process.env.CLIENT_ID ?? '')
 	}
 
@@ -37,18 +36,12 @@ function getRoute(environment: string): RouteLike {
 
 // and deploy your commands!
 void (async () => {
-	try {
-		console.log(`Started refreshing ${commands.length} application (/) commands.`)
-		// The put method is used to fully refresh all commands in the guild with the current set
-		const data: any = await rest.put(
-			getRoute(process.env.ENVIRONMENT ?? ''),
-			{ body: commands }
-		)
-		// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-		console.log(`Successfully reloaded ${data.length} application (/) commands.`)
-		// console.log(typeof data)
-	} catch (error) {
-		// And of course, make sure you catch and log any errors!
-		console.error(error)
-	}
+	console.log(`Started refreshing ${commands.length} application (/) commands.`)
+	// The put method is used to fully refresh all commands in the guild with the current set
+	const data: any = await rest.put(
+		getRoute(process.env.ENVIRONMENT ?? ''),
+		{ body: commands }
+	)
+	// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+	console.log(`Successfully reloaded ${data.length} application (/) commands.`)
 })()
