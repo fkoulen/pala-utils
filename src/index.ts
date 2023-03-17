@@ -57,7 +57,7 @@ void client.login(process.env.TOKEN)
 
 function loadCommandFiles(): void {
 	const commandsPath = path.join(__dirname, 'commands')
-	const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.ts'))
+	const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.ts') || file.endsWith('.js'))
 
 	for (const file of commandFiles) {
 		const filePath = path.join(commandsPath, file)
