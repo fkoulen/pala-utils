@@ -24,6 +24,7 @@ const rest = new REST({ version: '10' }).setToken(process.env.TOKEN ?? '')
 // Get route to deploy based on environment
 function getRoute(environment: string): RouteLike {
 	if (environment === 'prod') {
+		console.log(process.env.ENVIRONMENT)
 		return Routes.applicationCommands(process.env.CLIENT_ID ?? '')
 	}
 
