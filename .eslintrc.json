@@ -11,5 +11,10 @@
         "sourceType": "module",
         "project": "./tsconfig.json"
     },
-    "rules": {}
+    "rules": {
+        "indent": [2, "tab"],
+        "no-tabs": "off",
+        "@typescript-eslint/indent": "off",
+        "@typescript-eslint/space-before-function-paren": "off"
+    }
 }
