@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
 env:
   TOKEN: ${{secrets.TOKEN}}
-  CLIENT_ID: ${secrets.CLIENT_ID}}
+  CLIENT_ID: ${{secrets.CLIENT_ID}}
   ENVIRONMENT: ${{vars.ENVIRONMENT}}
 
 jobs:
