@@ -5,7 +5,9 @@ import fs from 'node:fs'
 import path from 'node:path'
 
 config()
-
+if (process.env.TOKEN == null || process.env.CLIENT_ID == null || process.env.ENVIRONMENT == null) {
+	throw Error('The environment variables [TOKEN, CLIENT_ID, ENVIRONMENT] are not set correctly.')
+}
 const commands: SlashCommandBuilder[] = []
 // Grab all the command files from the commands directory you created earlier
 const commandsPath = path.join(__dirname, 'commands')
@@ -25,7 +27,11 @@ function getRoute(environment: string): RouteLike {
 		return Routes.applicationCommands(process.env.CLIENT_ID ?? '')
 	}
 
-	return Routes.applicationGuildCommands(process.env.CLIENT_ID ?? '', process.env.GUILD_ID ?? '')
+	if (process.env.GUILD_ID == null) {
+		throw Error('The environment variable [GUILD_ID] is not set correctly.')
+	}
+
+	return Routes.applicationGuildCommands(process.env.CLIENT_ID ?? '', process.env.GUILD_ID)
 }
 
 // and deploy your commands!
