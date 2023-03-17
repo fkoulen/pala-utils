@@ -4,8 +4,8 @@ on:
   push:
     branches: [ "main" ]
 env:
-  TOKEN: ${{vars.TOKEN}}
-  CLIENT_ID: ${vars.CLIENT_ID}}
+  TOKEN: ${{secrets.TOKEN}}
+  CLIENT_ID: ${secrets.CLIENT_ID}}
   ENVIRONMENT: ${{vars.ENVIRONMENT}}
 
 jobs:
